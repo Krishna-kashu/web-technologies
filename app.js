@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+
 // // 1. Title Component
 // function Title() {
 //   return <h1>Welcome to ReactJS</h1>;
@@ -57,11 +58,10 @@ import ReactDOM from "react-dom/client";
 //   );
 // };
 
-
+// ---------- HEADER ---------- 
 let Header = () => {
   return (
     <header className="header">
-      {/* LOGO */}
       <div className="logo">
         <img
           src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
@@ -70,7 +70,6 @@ let Header = () => {
         <span className="brand-name">LearnSphere</span>
       </div>
 
-      {/* NAV */}
       <nav className="nav">
         <ul>
           <li>Courses</li>
@@ -83,7 +82,7 @@ let Header = () => {
   );
 };
 
-/* ---------- BODY ---------- */
+//  ---------- BODY ----------
 let Body = () => {
   return (
     <div className="body">
@@ -92,76 +91,78 @@ let Body = () => {
       <h5>Popular courses to explore</h5>
 
       <div className="course-items">
-        <Card
-          imgSrc="https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg"
-          name="Full Stack Development"
-          category="Web Development"
-          platform="LearnHub"
-          ratings="4.6 ⭐ · 6 Months"
-        />
-
-        <Card
-          imgSrc="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
-          name="Data Science Bootcamp"
-          category="AI & ML"
-          platform="SkillForge"
-          ratings="4.5 ⭐ · 5 Months"
-        />
-
-        <Card
-          imgSrc="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg"
-          name="UI/UX Design"
-          category="Design"
-          platform="DesignPro"
-          ratings="4.4 ⭐ · 3 Months"
-        />
-
-        <Card
-          imgSrc="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg"
-          name="Cloud Computing"
-          category="AWS & Azure"
-          platform="CloudPath"
-          ratings="4.3 ⭐ · 4 Months"
-        />
-
-        <Card
-          imgSrc="https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg"
-          name="Java Backend Mastery"
-          category="Backend Development"
-          platform="CodeVerse"
-          ratings="4.7 ⭐ · 5 Months"
-        />
-
-        <Card
-          imgSrc="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg"
-          name="Cyber Security"
-          category="Security"
-          platform="SecureIT"
-          ratings="4.2 ⭐ · 4 Months"
-        />
+        {courses.map((course) => (
+          <Card course={course} />
+        ))}
       </div>
     </div>
   );
 };
 
-/* ---------- CARD ---------- */
-let Card = (props) => {
+// ---------- CARD (PROPS DESTRUCTURING) ---------- 
+let Card = ({ course }) => {
   return (
     <div className="card">
       <div className="card-img">
-        <img src={props.imgSrc} alt="course" />
+        <img src={course.imgSrc} alt="course" />
       </div>
       <div className="card-details">
-        <h2>{props.name}</h2>
-        <h4>{props.ratings}</h4>
-        <p>{props.category}</p>
-        <p>{props.platform}</p>
+        <h2>{course.name}</h2>
+        <h4>{course.ratings}</h4>
+        <p>{course.category}</p>
+        <p>{course.platform}</p>
       </div>
     </div>
   );
 };
 
-/* ---------- FOOTER ---------- */
+// ---------- COURSE DATA (ARRAY) ---------- 
+const courses = [
+  {
+    imgSrc: "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg",
+    name: "Full Stack Development",
+    category: "Web Development",
+    platform: "LearnHub",
+    ratings: "4.6 ⭐ · 6 Months",
+  },
+  {
+    imgSrc: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
+    name: "Data Science Bootcamp",
+    category: "AI & ML",
+    platform: "SkillForge",
+    ratings: "4.5 ⭐ · 5 Months",
+  },
+  {
+    imgSrc: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg",
+    name: "UI/UX Design",
+    category: "Design",
+    platform: "DesignPro",
+    ratings: "4.4 ⭐ · 3 Months",
+  },
+  {
+    imgSrc: "https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg",
+    name: "Cloud Computing",
+    category: "AWS & Azure",
+    platform: "CloudPath",
+    ratings: "4.3 ⭐ · 4 Months",
+  },
+  {
+    imgSrc: "https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg",
+    name: "Java Backend Mastery",
+    category: "Backend Development",
+    platform: "CodeVerse",
+    ratings: "4.7 ⭐ · 5 Months",
+  },
+  {
+    imgSrc: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg",
+    name: "Cyber Security",
+    category: "Security",
+    platform: "SecureIT",
+    ratings: "4.2 ⭐ · 4 Months",
+  },
+];
+
+// ---------- FOOTER ---------- 
 let Footer = () => {
   return (
     <footer className="footer">
@@ -206,7 +207,7 @@ let Footer = () => {
   );
 };
 
-/* ---------- APP ---------- */
+// ---------- APP ---------- 
 let AppLayout = () => {
   return (
     <div>
@@ -219,5 +220,3 @@ let AppLayout = () => {
 
 let root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<AppLayout />);
-
-  
